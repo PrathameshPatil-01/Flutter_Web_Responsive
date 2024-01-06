@@ -1,29 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:web_auth/screens/authentication/forgot_pass.dart';
-import 'package:web_auth/screens/authentication/login.dart';
-import 'package:web_auth/screens/authentication/signup.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:web_auth/app.dart';
+import 'package:web_auth/data/user_repository/user_repository.dart';
+import 'package:web_auth/firebase_options.dart';
+import 'package:web_auth/simple_bloc_observer.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  Bloc.observer = SimpleBlocObserver();
+  runApp(MyApp(FirebaseUserRepository()));
 }
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Authentication',
-      initialRoute: '/',
-      routes: {
-        '/': (context) => LoginScreen(),
-        '/signup': (context) => SignupScreen(),
-        '/forgot_password': (context) => ForgotPasswordScreen(),
-      },
-    );
-  }
-}
-
-
-
-
-
-
