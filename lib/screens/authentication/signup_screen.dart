@@ -123,21 +123,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    const Text(
-                                        style: TextStyle(
-                                          fontSize: 11,
-                                        ),
-                                        "Already have an account ?"),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pushNamed(
-                                            context, '/LoginScreen');
-                                      },
-                                      child: const Text(
-                                        'Login',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.blue,
+                                    const Flexible(
+                                      child: Text(
+                                          style: TextStyle(
+                                            fontSize: 11,
+                                          ),
+                                          "Already have an account ?"),
+                                    ),
+                                    Flexible(
+                                      child: TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text(
+                                          'Login',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.blue,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -486,6 +489,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                       _passwordController
                                                           .text));
                                             });
+                                            Navigator.of(context).pop();
                                           }
                                         },
                                         style: ElevatedButton.styleFrom(
@@ -506,7 +510,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                 fontWeight: FontWeight.w600),
                                           ),
                                         ))
-                                    : const RefreshProgressIndicator(),
+                                    : const SizedBox(
+                                        height: 20,
+                                        width: 20,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                                  Color.fromARGB(255, 0, 0, 0)),
+                                        ),
+                                      ),
                                 const SizedBox(height: 20.0),
                                 const Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 20),
@@ -567,17 +580,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              Image.network(
-                                                'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png', // Replace with your Google logo URL
-                                                height: 25,
-                                                width: 25,
+                                              Flexible(
+                                                child: Image.network(
+                                                  'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png', // Replace with your Google logo URL
+                                                  height: 25,
+                                                  width: 25,
+                                                ),
                                               ),
                                               const SizedBox(width: 10),
-                                              const Text(
-                                                'Sign In with Google',
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w600,
+                                              const Flexible(
+                                                child: Text(
+                                                  'Sign In with Google',
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
                                                 ),
                                               ),
                                             ],

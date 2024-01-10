@@ -8,7 +8,7 @@ abstract class UpdateUserInfoEvent extends Equatable {
 }
 
 class UploadPicture extends UpdateUserInfoEvent {
-	final String file;
+	final html.File file;
 	final String userId;
 
 	const UploadPicture(this.file, this.userId);
