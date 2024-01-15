@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:web_auth/data/user_repository/user_repository.dart';
+import 'package:web_auth/data/user_repository/user_repo.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';

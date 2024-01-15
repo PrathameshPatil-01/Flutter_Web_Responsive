@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:web_auth/data/user_repository/src/models/models.dart';
+import 'package:web_auth/data/user_repository/models/my_user.dart';
 import 'package:web_auth/screens/authentication/forgot_pass_screen.dart';
 import 'package:web_auth/screens/authentication/login_screen.dart';
 import 'package:web_auth/screens/authentication/signup_screen.dart';

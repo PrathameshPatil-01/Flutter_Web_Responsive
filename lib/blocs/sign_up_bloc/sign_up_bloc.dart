@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:web_auth/data/user_repository/user_repository.dart';
+import 'package:web_auth/data/user_repository/models/my_user.dart';
+import 'package:web_auth/data/user_repository/user_repo.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';

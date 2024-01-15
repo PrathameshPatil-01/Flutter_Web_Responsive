@@ -40,8 +40,9 @@ class MenuButton extends StatelessWidget {
       ],
       child: BlocBuilder<MyUserBloc, MyUserState>(
         builder: (context, state) {
-          if (state.status == MyUserStatus.loading)
+          if (state.status == MyUserStatus.loading) {
             const CircularProgressIndicator();
+          }
           if (state.status == MyUserStatus.success) {
             return CircleAvatar(
               radius: 20, // Adjust the size as needed

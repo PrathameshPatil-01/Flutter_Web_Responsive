@@ -4,9 +4,10 @@ import 'package:web_auth/blocs/authentication_bloc/authentication_bloc.dart';
 import 'package:web_auth/blocs/get_post_bloc/get_post_bloc.dart';
 import 'package:web_auth/blocs/login_bloc/login_bloc.dart';
 import 'package:web_auth/blocs/my_user_bloc/my_user_bloc.dart';
+import 'package:web_auth/blocs/post_image_bloc/post_image_bloc.dart';
 import 'package:web_auth/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:web_auth/blocs/update_user_info_bloc/update_user_info_bloc.dart';
-import 'package:web_auth/data/post_repository/post_repository.dart';
+import 'package:web_auth/data/post_repository/firebase_post_repository.dart';
 import 'package:web_auth/screens/authentication/login_screen.dart';
 import 'package:web_auth/screens/home/home_screen.dart';
 import 'package:web_auth/screens/routes/app_router.dart';
@@ -43,9 +44,14 @@ class MyAppView extends StatelessWidget {
                     context.read<AuthenticationBloc>().userRepository),
           ),
           BlocProvider(
-              create: (context) =>
-                  GetPostBloc(postRepository: FirebasePostRepository())
-                    ..add(GetPosts()))
+            create: (context) =>
+                GetPostBloc(postRepository: FirebasePostRepository())
+                  ..add(GetPosts()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                PostImageBloc(postRepository: FirebasePostRepository()),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

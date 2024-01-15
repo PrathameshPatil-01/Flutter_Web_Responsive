@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:web_auth/app_view.dart';
 import 'package:web_auth/blocs/authentication_bloc/authentication_bloc.dart';
-import 'package:web_auth/data/user_repository/user_repository.dart';
+import 'package:web_auth/data/user_repository/user_repo.dart';
 
 class MyApp extends StatelessWidget {
   final UserRepository userRepository;

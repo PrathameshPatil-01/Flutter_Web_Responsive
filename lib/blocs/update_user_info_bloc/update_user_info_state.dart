@@ -7,10 +7,9 @@ abstract class UpdateUserInfoState extends Equatable {
   List<Object> get props => [];
 }
 
-class UpdateUserInfoInitial extends UpdateUserInfoState {}
+class UploadPictureLoading extends UpdateUserInfoState {}
 
 class UploadPictureFailure extends UpdateUserInfoState {}
-class UploadPictureLoading extends UpdateUserInfoState {}
 class UploadPictureSuccess extends UpdateUserInfoState {
 	final String userImage;
 

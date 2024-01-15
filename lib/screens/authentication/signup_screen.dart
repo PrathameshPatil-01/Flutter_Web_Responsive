@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:web_auth/blocs/sign_up_bloc/sign_up_bloc.dart';
 import 'package:web_auth/components/strings.dart';
 import 'package:web_auth/components/textfield.dart';
-import 'package:web_auth/data/user_repository/user_repository.dart';
+import 'package:web_auth/data/user_repository/models/my_user.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const routeName = '/SignUpScreen';

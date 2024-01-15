@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:universal_html/html.dart' as html;
+import 'package:web_auth/data/user_repository/models/my_user.dart';
 
-import '../user_repository.dart';
 
 abstract class UserRepository {
   Stream<User?> get user;

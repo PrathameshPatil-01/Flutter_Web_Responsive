@@ -6,8 +6,10 @@ import 'package:web_auth/blocs/create_post_bloc/create_post_bloc.dart';
 import 'package:web_auth/blocs/my_user_bloc/my_user_bloc.dart';
 import 'package:web_auth/blocs/update_user_info_bloc/update_user_info_bloc.dart';
 import 'package:web_auth/components/menubutton.dart';
-import 'package:web_auth/data/post_repository/src/firebase_post_repository.dart';
+import 'package:web_auth/data/post_repository/firebase_post_repository.dart';
 import 'package:web_auth/screens/home/post_screen.dart';
+import 'package:web_auth/screens/menu/feedpage.dart';
+import 'package:web_auth/screens/menu/postpage.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/HomeScreen';
@@ -351,9 +353,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildBody() {
     switch (_selectedIndex) {
       case 0: // Feed
-        return Container();
+        return const FeedPage();
       case 1: // Projects
-        return Container();
+        return const PostPage();
       case 2: // Knowledge
         return Container();
       case 3: // Code
@@ -362,10 +364,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return Container();
       case 5: // Challenges
         return Container();
-      case 6: // Messages
-        return Container();
-      case 7: // Notifications
-        return Container();
+
       default:
         return Container(); // Or a default screen if needed
     }

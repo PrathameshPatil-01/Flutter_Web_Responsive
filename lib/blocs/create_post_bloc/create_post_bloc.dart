@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:web_auth/data/post_repository/src/models/post.dart';
-import 'package:web_auth/data/post_repository/src/post_repo.dart';
+import 'package:web_auth/data/post_repository/models/post.dart';
+import 'package:web_auth/data/post_repository/post_repo.dart';
 
 part 'create_post_event.dart';
 part 'create_post_state.dart';
 
 class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
-	PostRepository _postRepository;
+	final PostRepository _postRepository;
 
   CreatePostBloc({
 		required PostRepository postRepository

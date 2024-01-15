@@ -4,11 +4,13 @@ import 'package:intl/intl.dart';
 import 'package:web_auth/blocs/get_post_bloc/get_post_bloc.dart';
 
 class PostPage extends StatelessWidget {
+  const PostPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Post Page'),
+        title: const Text('Post Page'),
       ),
       body: BlocBuilder<GetPostBloc, GetPostState>(
         builder: (context, state) {
@@ -18,7 +20,7 @@ class PostPage extends StatelessWidget {
               itemBuilder: (context, int i) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
+                  child: SizedBox(
                     width: double.infinity,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -63,10 +65,8 @@ class PostPage extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 10),
-                          Container(
-                            child: Text(
-                              state.posts[i].post,
-                            ),
+                          Text(
+                            state.posts[i].content!,
                           )
                         ],
                       ),
