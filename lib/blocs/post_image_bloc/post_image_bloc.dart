@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:web_auth/data/post_repository/post_repo.dart';
 
@@ -11,7 +11,7 @@ class PostImageBloc extends Bloc<PostImageEvent, PostImageState> {
 
   PostImageBloc({required PostRepository postRepository})
       : _postRepository = postRepository,
-        super(UploadPostImageLoading()) {
+        super(UploadPostImageInitial()) {
     on<UploadPostImage>((event, emit) async {
       emit(UploadPostImageLoading());
       try {

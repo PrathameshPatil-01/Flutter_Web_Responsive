@@ -1,4 +1,5 @@
 import 'package:universal_html/html.dart' as html;
+import 'package:web_auth/data/post_repository/entities/post_entity.dart';
 import 'package:web_auth/data/post_repository/models/post.dart';
 
 abstract class PostRepository {
@@ -6,5 +7,7 @@ abstract class PostRepository {
 
   Future<List<Post>> getPost();
 
-  Future<String> uploadPostImage(html.File file, String postId,String userId);
+  Future<String> uploadPostImage(html.File file, String postId, String userId);
+
+  Future<Post> likePost(String postId, String userId);
 }

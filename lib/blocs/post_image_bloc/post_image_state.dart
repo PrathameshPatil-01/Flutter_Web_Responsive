@@ -6,6 +6,7 @@ sealed class PostImageState extends Equatable {
   @override
   List<Object> get props => [];
 }
+class UploadPostImageInitial extends PostImageState {}
 
 final class UploadPostImageLoading extends PostImageState {}
 

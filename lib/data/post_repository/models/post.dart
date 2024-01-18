@@ -7,8 +7,8 @@ class Post {
   MyUser myUser;
   String? content;
   String? imageUrl;
-  int commentsCount;
-  int likesCount;
+  List<String> comments;
+  List<String> likes;
 
   Post({
     required this.postId,
@@ -16,19 +16,20 @@ class Post {
     required this.myUser,
     this.content,
     this.imageUrl,
-    this.commentsCount = 0,
-    this.likesCount = 0,
+    this.comments = const [],
+    this.likes = const [],
   });
 
   // Empty user which represents an unauthenticated user.
   static final empty = Post(
-      postId: '',
-      content: '',
-      createAt: DateTime.now(),
-      myUser: MyUser.empty,
-      imageUrl: '',
-      commentsCount: 0,
-      likesCount: 0);
+    postId: '',
+    content: '',
+    createAt: DateTime.now(),
+    myUser: MyUser.empty,
+    imageUrl: '',
+    comments: [],
+    likes: [],
+  );
 
   // Modify MyUser parameters
   Post copyWith({
@@ -37,8 +38,8 @@ class Post {
     MyUser? myUser,
     String? content,
     String? imageUrl,
-    int? commentsCount,
-    int? likesCount,
+    List<String>? comments,
+    List<String>? likes,
   }) {
     return Post(
       postId: postId ?? this.postId,
@@ -46,8 +47,8 @@ class Post {
       myUser: myUser ?? this.myUser,
       content: content ?? this.content,
       imageUrl: imageUrl ?? this.imageUrl,
-      commentsCount: commentsCount ?? this.commentsCount,
-      likesCount: likesCount ?? this.likesCount,
+      comments: comments ?? this.comments,
+      likes: likes ?? this.likes,
     );
   }
 
@@ -64,8 +65,8 @@ class Post {
       createAt: createAt,
       myUser: myUser,
       imageUrl: imageUrl,
-      likesCount: likesCount,
-      commentsCount: commentsCount,
+      likes: likes,
+      comments: comments,
     );
   }
 
@@ -76,13 +77,13 @@ class Post {
       createAt: entity.createAt,
       myUser: entity.myUser,
       imageUrl: entity.imageUrl,
-      likesCount: entity.likesCount,
-      commentsCount: entity.commentsCount,
+      likes: entity.likes,
+      comments: entity.comments,
     );
   }
 
   @override
   String toString() {
-    return 'Post(postId: $postId, createAt: $createAt, myUser: $myUser, content: $content, imageUrl: $imageUrl, commentsCount: $commentsCount, likesCount: $likesCount)';
+    return 'Post(postId: $postId, createAt: $createAt, myUser: $myUser, content: $content, imageUrl: $imageUrl, comments: $comments, likes: $likes)';
   }
 }

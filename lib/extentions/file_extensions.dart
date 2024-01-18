@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:html' as html;
-
 import 'dart:typed_data';
+
+import 'package:universal_html/html.dart' as html;
 
 typedef _ByteResult = FutureOr<List<int>>;
 

@@ -12,7 +12,7 @@ class UpdateUserInfoBloc
 
   UpdateUserInfoBloc({required UserRepository userRepository})
       : _userRepository = userRepository,
-        super(UploadPictureLoading()) {
+        super(UploadPictureInitial()) {
     on<UploadPicture>((event, emit) async {
       emit(UploadPictureLoading());
       try {

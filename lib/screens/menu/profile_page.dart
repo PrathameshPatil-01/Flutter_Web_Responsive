@@ -15,55 +15,58 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          const Expanded(flex: 2, child: _TopPortion()),
-          Expanded(
-            flex: 3,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  BlocBuilder<MyUserBloc, MyUserState>(
-                    builder: (context, state) {
-                      if (state.status == MyUserStatus.success) {
-                        return Text(
-                            " ${state.user!.firstName} ${state.user!.lastName}");
-                      } else {
-                        return Container();
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FloatingActionButton.extended(
-                        onPressed: () {},
-                        heroTag: 'follow',
-                        elevation: 0,
-                        label: const Text("Follow"),
-                        icon: const Icon(Icons.person_add_alt_1),
-                      ),
-                      const SizedBox(width: 16.0),
-                      FloatingActionButton.extended(
-                        onPressed: () {},
-                        heroTag: 'mesage',
-                        elevation: 0,
-                        backgroundColor: Colors.red,
-                        label: const Text("Message"),
-                        icon: const Icon(Icons.message_rounded),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  const _ProfileInfoRow()
-                ],
+    return Center(
+      child: SizedBox(
+        width: 500,
+        child: Column(
+          children: [
+            const Expanded(flex: 2, child: _TopPortion()),
+            Expanded(
+              flex: 3,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    BlocBuilder<MyUserBloc, MyUserState>(
+                      builder: (context, state) {
+                        if (state.status == MyUserStatus.success) {
+                          return Text(
+                              " ${state.user!.firstName} ${state.user!.lastName}");
+                        } else {
+                          return Container();
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FloatingActionButton.extended(
+                          onPressed: () {},
+                          heroTag: 'follow',
+                          elevation: 0,
+                          label: const Text("Follow"),
+                          icon: const Icon(Icons.person_add_alt_1),
+                        ),
+                        const SizedBox(width: 16.0),
+                        FloatingActionButton.extended(
+                          onPressed: () {},
+                          heroTag: 'mesage',
+                          elevation: 0,
+                          backgroundColor: Colors.red,
+                          label: const Text("Message"),
+                          icon: const Icon(Icons.message_rounded),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    const _ProfileInfoRow()
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

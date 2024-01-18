@@ -6,6 +6,7 @@ abstract class UpdateUserInfoState extends Equatable {
   @override
   List<Object> get props => [];
 }
+class UploadPictureInitial extends UpdateUserInfoState {}
 
 class UploadPictureLoading extends UpdateUserInfoState {}
 

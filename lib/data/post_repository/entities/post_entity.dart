@@ -8,8 +8,8 @@ class PostEntity {
   MyUser myUser;
   String? content;
   String? imageUrl;
-  int commentsCount;
-  int likesCount;
+  List<String> likes; // List to store user IDs who liked the post
+  List<String> comments; // List to store user IDs who commented on the post
 
   PostEntity({
     required this.postId,
@@ -17,8 +17,8 @@ class PostEntity {
     required this.myUser,
     this.content,
     this.imageUrl,
-    this.commentsCount = 0,
-    this.likesCount = 0,
+    this.likes = const [], // Initialize with an empty list
+    this.comments = const [], // Initialize with an empty list
   });
 
   Map<String, Object?> toDocument() {
@@ -28,8 +28,8 @@ class PostEntity {
       'createAt': createAt,
       'myUser': myUser.toEntity().toDocument(),
       'imageUrl': imageUrl,
-      'commentsCount': commentsCount,
-      'likesCount': likesCount,
+      'likes': likes,
+      'comments': comments,
     };
   }
 
@@ -40,11 +40,11 @@ class PostEntity {
       imageUrl: doc['imageUrl'] as String,
       createAt: (doc['createAt'] as Timestamp).toDate(),
       myUser: MyUser.fromEntity(MyUserEntity.fromDocument(doc['myUser'])),
-      likesCount: doc['likesCount'] as int,
-      commentsCount: doc['commentsCount'] as int,
+      likes: List<String>.from(doc['likes'] ?? []),
+      comments: List<String>.from(doc['comments'] ?? []),
     );
   }
 
   List<Object?> get props =>
-      [postId, content, imageUrl, createAt, myUser, likesCount, commentsCount];
+      [postId, content, imageUrl, createAt, myUser, likes, comments];
 }
