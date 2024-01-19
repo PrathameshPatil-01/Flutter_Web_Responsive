@@ -10,4 +10,6 @@ abstract class PostRepository {
   Future<String> uploadPostImage(html.File file, String postId, String userId);
 
   Future<Post> likePost(String postId, String userId);
+
+  Future<int> getPostCountForUser(String userId);
 }

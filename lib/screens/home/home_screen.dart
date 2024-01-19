@@ -2,11 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:web_auth/blocs/create_post_bloc/create_post_bloc.dart';
 import 'package:web_auth/blocs/login_bloc/login_bloc.dart';
 import 'package:web_auth/blocs/my_user_bloc/my_user_bloc.dart';
 import 'package:web_auth/blocs/update_user_info_bloc/update_user_info_bloc.dart';
-import 'package:web_auth/data/post_repository/firebase_post_repository.dart';
 import 'package:web_auth/data/user_repository/models/my_user.dart';
 import 'package:web_auth/screens/home/post_screen.dart';
 import 'package:web_auth/screens/menu/feed_page.dart';
@@ -52,12 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute<void>(
-                    builder: (BuildContext context) =>
-                        BlocProvider<CreatePostBloc>(
-                      create: (context) => CreatePostBloc(
-                          postRepository: FirebasePostRepository()),
-                      child: PostScreen(state.user!),
-                    ),
+                    builder: (BuildContext context) => PostScreen(state.user!),
                   ),
                 );
               },
@@ -68,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
         key: _scaffoldKey,
         appBar: _buildAppBar(isLargeScreen, width),
         drawer: isLargeScreen ? null : _buildDrawer(),
-        body: buildBody(),
+        body: _buildBody(),
       ),
     );
   }
@@ -401,10 +394,10 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Widget buildBody() {
+  Widget _buildBody() {
     switch (_selectedIndex) {
       case 0:
-        return const FeedPage();
+        return FeedPage();
       case 1:
         return const PostPage();
       case 2:

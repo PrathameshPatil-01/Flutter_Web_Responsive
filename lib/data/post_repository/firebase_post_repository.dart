@@ -28,11 +28,14 @@ class FirebasePostRepository implements PostRepository {
   }
 
   @override
-  Future<List<Post>> getPost() {
+  Future<List<Post>> getPost() async {
     try {
-      return postCollection.get().then((value) => value.docs
-          .map((e) => Post.fromEntity(PostEntity.fromDocument(e.data())))
-          .toList());
+      final querySnapshot =
+          await postCollection.orderBy('createAt', descending: true).get();
+
+      return querySnapshot.docs
+          .map((doc) => Post.fromEntity(PostEntity.fromDocument(doc.data())))
+          .toList();
     } catch (e) {
       rethrow;
     }
@@ -61,29 +64,35 @@ class FirebasePostRepository implements PostRepository {
   @override
   Future<Post> likePost(String postId, String userId) async {
     try {
-      // Fetch the post
       var postDoc = await postCollection.doc(postId).get();
       if (postDoc.exists) {
-        // Convert the document to a PostEntity
         var postEntity = PostEntity.fromDocument(postDoc.data()!);
 
-        // Check if the user is already in the likes list
         if (postEntity.likes.contains(userId)) {
-          // User is already in the likes, remove the user
           postEntity.likes.remove(userId);
         } else {
-          // User is not in the likes, add the user
           postEntity.likes.add(userId);
         }
 
-        // Update the post in Firestore
         await postCollection.doc(postId).update(postEntity.toDocument());
 
-        // Return the updated list of likes
         return Post.fromEntity(postEntity);
       } else {
         throw Exception("Post not found");
       }
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> getPostCountForUser(String userId) async {
+    try {
+      QuerySnapshot userPostsSnapshot =
+          await postCollection.where('myUser.id', isEqualTo: userId).get();
+
+      return userPostsSnapshot.size;
     } catch (e) {
       log(e.toString());
       rethrow;

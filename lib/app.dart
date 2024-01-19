@@ -13,6 +13,6 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider<AuthenticationBloc>(
           create: (_) => AuthenticationBloc(myUserRepository: userRepository))
-    ], child: const MyAppView());
+    ], child: MyAppView());
   }
 }

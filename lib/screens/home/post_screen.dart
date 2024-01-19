@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +5,8 @@ import 'package:image_picker_web/image_picker_web.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:web_auth/blocs/create_post_bloc/create_post_bloc.dart';
 import 'package:web_auth/blocs/get_post_bloc/get_post_bloc.dart';
+import 'package:web_auth/blocs/my_user_bloc/my_user_bloc.dart';
+import 'package:web_auth/blocs/post_count/post_count_bloc.dart';
 import 'package:web_auth/blocs/post_image_bloc/post_image_bloc.dart';
 import 'package:web_auth/data/post_repository/models/post.dart';
 import 'package:web_auth/data/user_repository/models/my_user.dart';
@@ -61,7 +62,7 @@ class PostScreenState extends State<PostScreen> {
             backgroundColor: Theme.of(context).colorScheme.background,
             floatingActionButton: FloatingActionButton(
               onPressed: () => _onFabPressed(context),
-              child: const Icon(CupertinoIcons.add),
+              child: const Icon(Icons.check),
             ),
             appBar: AppBar(
               elevation: 0,
@@ -105,6 +106,8 @@ class PostScreenState extends State<PostScreen> {
       setState(() => post.content = _controller.text);
       context.read<CreatePostBloc>().add(CreatePost(post));
       context.read<GetPostBloc>().add(GetPosts());
+      final userId = context.read<MyUserBloc>().state.user!.id;
+      context.read<PostCountBloc>().add(GetPostCount(userId));
       Navigator.pop(context);
     } else if (_controller.text.isEmpty && imageFile == null) {
       _showValidationErrorDialog(context);
