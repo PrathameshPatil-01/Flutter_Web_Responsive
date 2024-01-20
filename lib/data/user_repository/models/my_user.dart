@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:web_auth/data/user_repository/entities/my_user_entity.dart';
 
-
 class MyUser extends Equatable {
   final String id;
   final String email;
@@ -75,7 +74,7 @@ class MyUser extends Equatable {
       email: email,
       userName: userName,
       firstName: firstName,
-      lastName: lastName ,
+      lastName: lastName,
       country: country,
       state: state,
       city: city,
@@ -89,7 +88,7 @@ class MyUser extends Equatable {
       email: entity.email,
       userName: entity.userName,
       firstName: entity.firstName,
-      lastName: entity.lastName ,
+      lastName: entity.lastName,
       country: entity.country,
       state: entity.state,
       city: entity.city,
@@ -97,19 +96,16 @@ class MyUser extends Equatable {
     );
   }
 
-
-
   @override
   List<Object?> get props => [
-      id,
-      email,
-      userName,
-      firstName,
-      lastName,
-      country,
-      state,
-      city,
-      picture,
-    ];
-  
+        id,
+        email,
+        userName,
+        firstName,
+        lastName,
+        country,
+        state,
+        city,
+        picture,
+      ];
 }

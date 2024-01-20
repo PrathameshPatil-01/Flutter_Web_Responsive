@@ -3,16 +3,16 @@ import 'package:web_auth/data/user_repository/models/my_user.dart';
 
 class Post {
   String postId;
-  DateTime createAt;
+  DateTime createdAt;
   MyUser myUser;
   String? content;
   String? imageUrl;
-  List<String> comments;
+  List<dynamic> comments;
   List<String> likes;
 
   Post({
     required this.postId,
-    required this.createAt,
+    required this.createdAt,
     required this.myUser,
     this.content,
     this.imageUrl,
@@ -24,7 +24,7 @@ class Post {
   static final empty = Post(
     postId: '',
     content: '',
-    createAt: DateTime.now(),
+    createdAt: DateTime.now(),
     myUser: MyUser.empty,
     imageUrl: '',
     comments: [],
@@ -34,16 +34,16 @@ class Post {
   // Modify MyUser parameters
   Post copyWith({
     String? postId,
-    DateTime? createAt,
+    DateTime? createdAt,
     MyUser? myUser,
     String? content,
     String? imageUrl,
-    List<String>? comments,
+    List<dynamic>? comments,
     List<String>? likes,
   }) {
     return Post(
       postId: postId ?? this.postId,
-      createAt: createAt ?? this.createAt,
+      createdAt: createdAt ?? this.createdAt,
       myUser: myUser ?? this.myUser,
       content: content ?? this.content,
       imageUrl: imageUrl ?? this.imageUrl,
@@ -62,7 +62,7 @@ class Post {
     return PostEntity(
       postId: postId,
       content: content,
-      createAt: createAt,
+      createdAt: createdAt,
       myUser: myUser,
       imageUrl: imageUrl,
       likes: likes,
@@ -74,7 +74,7 @@ class Post {
     return Post(
       postId: entity.postId,
       content: entity.content,
-      createAt: entity.createAt,
+      createdAt: entity.createdAt,
       myUser: entity.myUser,
       imageUrl: entity.imageUrl,
       likes: entity.likes,
@@ -84,6 +84,6 @@ class Post {
 
   @override
   String toString() {
-    return 'Post(postId: $postId, createAt: $createAt, myUser: $myUser, content: $content, imageUrl: $imageUrl, comments: $comments, likes: $likes)';
+    return 'Post(postId: $postId, createdAt: $createdAt, myUser: $myUser, content: $content, imageUrl: $imageUrl, comments: $comments, likes: $likes)';
   }
 }

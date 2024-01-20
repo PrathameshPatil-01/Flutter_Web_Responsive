@@ -16,7 +16,7 @@ class FirebasePostRepository implements PostRepository {
   Future<Post> createPost(Post post) async {
     try {
       post.postId = const Uuid().v1();
-      post.createAt = DateTime.now();
+      post.createdAt = DateTime.now();
 
       await postCollection.doc(post.postId).set(post.toEntity().toDocument());
 
@@ -31,7 +31,7 @@ class FirebasePostRepository implements PostRepository {
   Future<List<Post>> getPost() async {
     try {
       final querySnapshot =
-          await postCollection.orderBy('createAt', descending: true).get();
+          await postCollection.orderBy('createdAt', descending: true).get();
 
       return querySnapshot.docs
           .map((doc) => Post.fromEntity(PostEntity.fromDocument(doc.data())))

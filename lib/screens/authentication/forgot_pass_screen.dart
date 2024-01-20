@@ -14,7 +14,6 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Forgot Password')),
       body: Center(
         child: SingleChildScrollView(
           child: LayoutBuilder(builder: (context, constraints) {
@@ -34,7 +33,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   end: Alignment.bottomRight,
                   colors: [
                     Colors.deepPurple.shade50,
-                    Colors.deepPurple.shade100,
+                    Colors.deepPurple.shade200,
                   ],
                 ),
                 boxShadow: [
@@ -73,16 +72,36 @@ class ForgotPasswordScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Flexible(
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/LoginScreen');
+                                },
+                                child: const Text(
+                                  'Back to Login',
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.blueAccent,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                         const SizedBox(height: 16.0),
                         const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              'Forgot your password? Reset it securely through your email.',
+                              'Forgot your password ? Reset it securely through your email. ',
                               style: TextStyle(
                                 fontSize: 10,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w400,
                                 color: Colors.deepPurple,
                               ),
                             ),
@@ -109,8 +128,11 @@ class ForgotPasswordScreen extends StatelessWidget {
                               if (_formKey.currentState!.validate()) {}
                             },
                             style: ElevatedButton.styleFrom(
+                              elevation: 3.0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(60),
+                                side: const BorderSide(
+                                    color: Colors.grey), // Optional border
                               ),
                             ),
                             child: const Padding(
@@ -118,10 +140,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                               child: Text(
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: Colors.white,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600),
-                                  'Submit Your e-mail'),
+                                  'SUBMIT YOUR e-Mail'),
                             )),
                       ],
                     ),

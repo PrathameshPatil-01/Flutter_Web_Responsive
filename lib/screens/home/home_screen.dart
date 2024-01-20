@@ -6,9 +6,8 @@ import 'package:web_auth/blocs/login_bloc/login_bloc.dart';
 import 'package:web_auth/blocs/my_user_bloc/my_user_bloc.dart';
 import 'package:web_auth/blocs/update_user_info_bloc/update_user_info_bloc.dart';
 import 'package:web_auth/data/user_repository/models/my_user.dart';
-import 'package:web_auth/screens/home/post_screen.dart';
-import 'package:web_auth/screens/menu/feed_page.dart';
-import 'package:web_auth/screens/menu/postpage.dart';
+import 'package:web_auth/screens/home/create_post_screen.dart';
+import 'package:web_auth/screens/menu/posts_screen/feed_page.dart';
 import 'package:web_auth/screens/menu/profile_page.dart';
 
 enum Menu { itemOne, itemTwo, itemThree }
@@ -82,10 +81,17 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 30,
+              width: 30,
+              child: Image.network(
+                  "https://icon-library.com/images/icon-logo-png/icon-logo-png-11.jpg"),
+            ),
+            SizedBox(width: width * 0.015),
             const Text(
-              "LOGO",
-              style:
-                  TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+              "WEB-DEMO",
+              style: TextStyle(
+                  color: Colors.deepPurpleAccent, fontWeight: FontWeight.bold),
             ),
             if (isLargeScreen) SizedBox(width: width * 0.02),
             if (isLargeScreen) _buildSearchBar(width),
@@ -358,7 +364,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Color _getColorForItem(String item) {
     switch (item) {
       case 'Feed':
-        return Colors.purple;
+        return Colors.deepPurple;
       case 'Projects':
         return Colors.blue;
       case 'Knowledge':
@@ -399,7 +405,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0:
         return FeedPage();
       case 1:
-        return const PostPage();
+        return Container();
       case 2:
         return Container();
       case 3:

@@ -1,38 +1,36 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:web_auth/blocs/get_post_bloc/get_post_bloc.dart';
-import 'package:web_auth/blocs/likes/likes_bloc.dart';
 import 'package:web_auth/blocs/my_user_bloc/my_user_bloc.dart';
 import 'package:web_auth/blocs/update_user_info_bloc/update_user_info_bloc.dart';
-import 'package:web_auth/data/post_repository/models/post.dart';
-import 'package:web_auth/screens/home/profile_card.dart';
+import 'package:web_auth/screens/menu/posts_screen/action_row.dart';
+import 'package:web_auth/screens/menu/posts_screen/profile_card.dart';
 
 class FeedPage extends StatelessWidget {
   FeedPage({Key? key}) : super(key: key);
 
   final ScrollController _controller = ScrollController();
 
+  String formatTimeDifference(DateTime creationTime) {
+    final now = DateTime.now();
+    final difference = now.difference(creationTime);
+
+    if (difference.inSeconds < 60) {
+      return 'just now';
+    } else if (difference.inMinutes < 60) {
+      return '${difference.inMinutes} min';
+    } else if (difference.inHours < 24) {
+      return '${difference.inHours} hrs';
+    } else if (difference.inDays == 1) {
+      return 'Yesterday';
+    } else {
+      return DateFormat('yyyy-MM-dd').format(creationTime);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    String formatTimeDifference(DateTime creationTime) {
-      final now = DateTime.now();
-      final difference = now.difference(creationTime);
-
-      if (difference.inSeconds < 60) {
-        return 'just now';
-      } else if (difference.inMinutes < 60) {
-        return '${difference.inMinutes} min';
-      } else if (difference.inHours < 24) {
-        return '${difference.inHours} hrs';
-      } else if (difference.inDays == 1) {
-        return 'Yesterday';
-      } else {
-        return DateFormat('yyyy-MM-dd').format(creationTime);
-      }
-    }
-
     final width = MediaQuery.of(context).size.width;
     final bool isLargeScreen = width > 800;
 
@@ -40,14 +38,14 @@ class FeedPage extends StatelessWidget {
       controller: _controller,
       child: Row(
         children: [
-          Expanded(flex: 1, child: Container()),
+          if (isLargeScreen) Expanded(flex: 1, child: Container()),
           if (isLargeScreen)
             const Expanded(
-              flex: 3,
+              flex: 4,
               child: ProfileCard(),
             ),
           Expanded(
-            flex: 5,
+            flex: 9,
             child: Container(
               margin: const EdgeInsets.all(2),
               child: _buildBody(formatTimeDifference),
@@ -55,13 +53,13 @@ class FeedPage extends StatelessWidget {
           ),
           if (isLargeScreen)
             Expanded(
-              flex: 3,
+              flex: 4,
               child: Container(
                 margin: const EdgeInsets.all(15),
                 child: const Text(''),
               ),
             ),
-          Expanded(flex: 1, child: Container()),
+          if (isLargeScreen) Expanded(flex: 1, child: Container()),
         ],
       ),
     );
@@ -133,7 +131,7 @@ class FeedPage extends StatelessWidget {
                                         ),
                                       ]),
                                     )),
-                                    Text(formatTimeDifference(item.createAt),
+                                    Text(formatTimeDifference(item.createdAt),
                                         style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 12,
@@ -158,7 +156,7 @@ class FeedPage extends StatelessWidget {
                                           image: NetworkImage(item.imageUrl!),
                                         )),
                                   ),
-                                _ActionsRow(item: item)
+                                ActionsRow(item: item)
                               ],
                             ),
                           ),
@@ -199,81 +197,6 @@ class _AvatarImage extends StatelessWidget {
         image: DecorationImage(
           image: NetworkImage(url),
           fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-}
-
-class _ActionsRow extends StatefulWidget {
-  Post item;
-  _ActionsRow({Key? key, required this.item}) : super(key: key);
-
-  @override
-  State<_ActionsRow> createState() => _ActionsRowState();
-}
-
-class _ActionsRowState extends State<_ActionsRow> {
-  bool isLiked = false;
-  int likesCount = 0;
-  late String userId;
-
-  @override
-  void initState() {
-    super.initState();
-
-    final userstate = context.read<MyUserBloc>().state;
-    userId = userstate.user!.id;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener<LikesBloc, LikesState>(
-      listener: (context, state) {
-        if (state is LikesLoadedState) {
-          setState(() {
-            if (widget.item.postId == state.post.postId) {
-              widget.item = state.post;
-            }
-          });
-        }
-      },
-      child: Theme(
-        data: Theme.of(context).copyWith(
-            iconTheme: const IconThemeData(color: Colors.grey, size: 18),
-            textButtonTheme: TextButtonThemeData(
-                style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all(Colors.grey),
-            ))),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.mode_comment_outlined),
-              label: Text(widget.item.comments.isEmpty
-                  ? ''
-                  : widget.item.comments.toString()),
-            ),
-            TextButton.icon(
-              onPressed: () {
-                context
-                    .read<LikesBloc>()
-                    .add(GetLikesEvent(widget.item.postId, userId));
-              },
-              icon: widget.item.likes.contains(userId)
-                  ? const Icon(
-                      Icons.favorite,
-                      color: Colors.red,
-                    )
-                  : const Icon(Icons.favorite_border),
-              label: Text(widget.item.likes.length.toString()),
-            ),
-            IconButton(
-              icon: const Icon(CupertinoIcons.share_up),
-              onPressed: () {},
-            )
-          ],
         ),
       ),
     );

@@ -4,16 +4,16 @@ import 'package:web_auth/data/user_repository/models/my_user.dart';
 
 class PostEntity {
   String postId;
-  DateTime createAt;
+  DateTime createdAt;
   MyUser myUser;
   String? content;
   String? imageUrl;
   List<String> likes; // List to store user IDs who liked the post
-  List<String> comments; // List to store user IDs who commented on the post
+  List<dynamic> comments; // List to store user IDs who commented on the post
 
   PostEntity({
     required this.postId,
-    required this.createAt,
+    required this.createdAt,
     required this.myUser,
     this.content,
     this.imageUrl,
@@ -25,7 +25,7 @@ class PostEntity {
     return {
       'postId': postId,
       'content': content,
-      'createAt': createAt,
+      'createdAt': createdAt,
       'myUser': myUser.toEntity().toDocument(),
       'imageUrl': imageUrl,
       'likes': likes,
@@ -38,13 +38,13 @@ class PostEntity {
       postId: doc['postId'] as String,
       content: doc['content'] as String,
       imageUrl: doc['imageUrl'] as String,
-      createAt: (doc['createAt'] as Timestamp).toDate(),
+      createdAt: (doc['createdAt'] as Timestamp).toDate(),
       myUser: MyUser.fromEntity(MyUserEntity.fromDocument(doc['myUser'])),
       likes: List<String>.from(doc['likes'] ?? []),
-      comments: List<String>.from(doc['comments'] ?? []),
+      comments: List<dynamic>.from(doc['comments'] ?? []),
     );
   }
 
   List<Object?> get props =>
-      [postId, content, imageUrl, createAt, myUser, likes, comments];
+      [postId, content, imageUrl, createdAt, myUser, likes, comments];
 }
