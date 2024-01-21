@@ -73,99 +73,114 @@ class FeedPage extends StatelessWidget {
             return Container(
               constraints: const BoxConstraints(maxWidth: 400),
               child: ScrollConfiguration(
-                behavior:
-                    ScrollConfiguration.of(context).copyWith(scrollbars: false),
-                child: ListView.separated(
-                  itemCount: state.posts.length,
-                  separatorBuilder: (BuildContext context, int index) {
-                    return const Divider();
-                  },
-                  controller: _controller,
-                  itemBuilder: (BuildContext context, int i) {
-                    final item = state.posts[i];
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Builder(builder: (context) {
-                            final userstate = context.watch<MyUserBloc>().state;
-                            final imagestate =
-                                context.watch<UpdateUserInfoBloc>().state;
-                            bool isLoading = imagestate is UploadPictureLoading;
-                            return item.myUser.id == userstate.user!.id
-                                ? (isLoading
-                                    ? const CircularProgressIndicator()
-                                    : _AvatarImage(userstate.user!.picture!))
-                                : item.myUser.picture != ''
-                                    ? _AvatarImage(item.myUser.picture!)
-                                    : const _AvatarImage(
-                                        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
-                          }),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: Column(
+                  behavior: ScrollConfiguration.of(context)
+                      .copyWith(scrollbars: false),
+                  child: SingleChildScrollView(
+                    controller: _controller,
+                    child: Column(
+                      children: List.generate(
+                        state.posts.length,
+                        (int i) {
+                          final item = state.posts[i];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                        child: RichText(
-                                      overflow: TextOverflow.ellipsis,
-                                      text: TextSpan(children: [
-                                        TextSpan(
-                                          text: item.myUser.firstName,
-                                          style: const TextStyle(
+                                Builder(builder: (context) {
+                                  final userstate =
+                                      context.watch<MyUserBloc>().state;
+                                  final imagestate =
+                                      context.watch<UpdateUserInfoBloc>().state;
+                                  bool isLoading =
+                                      imagestate is UploadPictureLoading;
+                                  return item.myUser.id == userstate.user!.id
+                                      ? (isLoading
+                                          ? const CircularProgressIndicator()
+                                          : _AvatarImage(
+                                              userstate.user!.picture!))
+                                      : item.myUser.picture != ''
+                                          ? _AvatarImage(item.myUser.picture!)
+                                          : const _AvatarImage(
+                                              "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+                                }),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            child: RichText(
+                                              overflow: TextOverflow.ellipsis,
+                                              text: TextSpan(children: [
+                                                TextSpan(
+                                                  text: item.myUser.firstName,
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                                TextSpan(
+                                                  text:
+                                                      " @${item.myUser.userName}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium,
+                                                ),
+                                              ]),
+                                            ),
+                                          ),
+                                          Text(
+                                            formatTimeDifference(
+                                                item.createdAt),
+                                            style: const TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 16,
-                                              color: Colors.black),
+                                              fontSize: 12,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          const Padding(
+                                            padding: EdgeInsets.only(left: 8.0),
+                                            child: Icon(Icons.more_horiz),
+                                          )
+                                        ],
+                                      ),
+                                      if (item.content != null)
+                                        Text(item.content!),
+                                      if (item.imageUrl != "")
+                                        Container(
+                                          height: 200,
+                                          margin:
+                                              const EdgeInsets.only(top: 8.0),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image:
+                                                  NetworkImage(item.imageUrl!),
+                                            ),
+                                          ),
                                         ),
-                                        TextSpan(
-                                          text: " @${item.myUser.userName}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium,
-                                        ),
-                                      ]),
-                                    )),
-                                    Text(formatTimeDifference(item.createdAt),
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12,
-                                          color: Colors.grey,
-                                        )),
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 8.0),
-                                      child: Icon(Icons.more_horiz),
-                                    )
-                                  ],
-                                ),
-                                if (item.content != null) Text(item.content!),
-                                if (item.imageUrl != "")
-                                  Container(
-                                    height: 200,
-                                    margin: const EdgeInsets.only(top: 8.0),
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(item.imageUrl!),
-                                        )),
+                                      ActionsRow(item: item)
+                                    ],
                                   ),
-                                ActionsRow(item: item)
+                                ),
                               ],
                             ),
-                          ),
-                        ],
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
-              ),
+                    ),
+                  )),
             );
           } else if (state is GetPostLoading) {
             return const Center(

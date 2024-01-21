@@ -44,7 +44,14 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Theme.of(context).colorScheme.background,
         floatingActionButton: BlocBuilder<MyUserBloc, MyUserState>(
           builder: (context, state) {
-            return FloatingActionButton(
+            return FloatingActionButton.extended(
+              label: const Row(
+                children: [
+                  Icon(CupertinoIcons.add),
+                  SizedBox(width: 8),
+                  Text("Create Post")
+                ],
+              ),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -53,7 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               },
-              child: const Icon(CupertinoIcons.add),
             );
           },
         ),

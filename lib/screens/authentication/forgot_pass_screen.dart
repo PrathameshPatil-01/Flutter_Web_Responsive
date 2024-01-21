@@ -17,7 +17,7 @@ class ForgotPasswordScreen extends StatelessWidget {
       body: Center(
         child: SingleChildScrollView(
           child: LayoutBuilder(builder: (context, constraints) {
-            const maxWidth = 500.0;
+            const maxWidth = 600.0;
             const margin = 20.0;
             final width = constraints.maxWidth > maxWidth
                 ? maxWidth
@@ -85,7 +85,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                   'Back to Login',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 16,
                                     color: Colors.blueAccent,
                                   ),
                                 ),
@@ -100,7 +100,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                             Text(
                               'Forgot your password ? Reset it securely through your email. ',
                               style: TextStyle(
-                                fontSize: 10,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.deepPurple,
                               ),

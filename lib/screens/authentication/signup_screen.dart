@@ -61,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Center(
             child: SingleChildScrollView(
               child: LayoutBuilder(builder: (context, constraints) {
-                const maxWidth = 500.0;
+                const maxWidth = 600.0;
                 const margin = 20.0;
                 final width = constraints.maxWidth > maxWidth
                     ? maxWidth
@@ -123,7 +123,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 const Flexible(
                                   child: Text(
                                       style: TextStyle(
-                                        fontSize: 11,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w300,
                                       ),
                                       "Already have an account ?"),
@@ -136,7 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     child: const Text(
                                       'Login',
                                       style: TextStyle(
-                                        fontSize: 14,
+                                        fontSize: 16,
                                         color: Colors.blue,
                                       ),
                                     ),

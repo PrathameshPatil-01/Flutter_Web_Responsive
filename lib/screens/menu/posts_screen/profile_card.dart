@@ -58,21 +58,15 @@ class ProfileCard extends StatelessWidget {
                                 style: Theme.of(context).textTheme.titleLarge,
                               ),
                               const SizedBox(height: 15),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Text(
-                                    "@ ${state.user!.userName}",
-                                    style:
-                                        Theme.of(context).textTheme.titleMedium,
-                                  ),
-                                  Text(
-                                    state.user!.email,
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                  ),
-                                ],
+                              Text(
+                                "@ ${state.user!.userName}",
+                                style:
+                                    Theme.of(context).textTheme.titleMedium,
+                              ),
+                              Text(
+                                state.user!.email,
+                                style:
+                                    Theme.of(context).textTheme.bodyMedium,
                               ),
                               const SizedBox(height: 5),
                               Row(
