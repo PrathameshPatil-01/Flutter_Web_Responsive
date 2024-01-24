@@ -103,44 +103,40 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            const Row(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text(
+                                const Text(
                                   'SIGN UP',
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                   ),
                                 ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                const Flexible(
-                                  child: Text(
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                      "Already have an account ?"),
-                                ),
-                                Flexible(
-                                  child: TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: const Text(
-                                      'Login',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.blue,
+                                const Spacer(),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    const Text(
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                        "Already have an account ?"),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text(
+                                        'Login',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.blue,
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -355,7 +351,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         Text(
                                           containsUpperCase
                                               ? "✅ Uppercase added"
-                                              : "⛔ At least 1 uppercase required ",
+                                              : "⛔  1 uppercase required ",
                                           style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
@@ -368,7 +364,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         Text(
                                           containsLowerCase
                                               ? "✅ Lowercase added"
-                                              : "⛔ At least 1 lowercase required ",
+                                              : "⛔  1 lowercase required ",
                                           style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
@@ -381,7 +377,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         Text(
                                           containsNumber
                                               ? "✅ Number added"
-                                              : "⛔ At least 1 number required ",
+                                              : "⛔  1 number required ",
                                           style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
@@ -401,8 +397,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       children: [
                                         Text(
                                           contains8Length
-                                              ? "✅ Minimum 8 characters added"
-                                              : "⛔ At least 8 characters required ",
+                                              ? "✅  8 characters added"
+                                              : "⛔  8 characters required ",
                                           style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
@@ -413,9 +409,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         ),
                                         const SizedBox(height: 5),
                                         Text(
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
                                           containsSpecialChar
                                               ? "✅ Special character added"
-                                              : "⛔ At least 1 special character required ",
+                                              : "⛔  1 special character required ",
                                           style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,

@@ -60,13 +60,11 @@ class ProfileCard extends StatelessWidget {
                               const SizedBox(height: 15),
                               Text(
                                 "@ ${state.user!.userName}",
-                                style:
-                                    Theme.of(context).textTheme.titleMedium,
+                                style: Theme.of(context).textTheme.titleMedium,
                               ),
                               Text(
                                 state.user!.email,
-                                style:
-                                    Theme.of(context).textTheme.bodyMedium,
+                                style: Theme.of(context).textTheme.bodyMedium,
                               ),
                               const SizedBox(height: 5),
                               Row(
@@ -75,17 +73,20 @@ class ProfileCard extends StatelessWidget {
                                 children: [
                                   if (state.user!.city != '')
                                     Text(
+                                      overflow: TextOverflow.ellipsis,
                                       "${state.user!.city}",
                                       style:
                                           Theme.of(context).textTheme.bodySmall,
                                     ),
                                   if (state.user!.state != '')
                                     Text(
+                                      overflow: TextOverflow.ellipsis,
                                       "${state.user!.state}",
                                       style:
                                           Theme.of(context).textTheme.bodySmall,
                                     ),
                                   Text(
+                                    overflow: TextOverflow.ellipsis,
                                     state.user!.country,
                                     style:
                                         Theme.of(context).textTheme.bodySmall,
@@ -189,6 +190,7 @@ class _ProfileInfoRow extends StatelessWidget {
             ),
           ),
           Text(
+            overflow: TextOverflow.ellipsis,
             item.title,
             style: Theme.of(context).textTheme.bodySmall,
           )

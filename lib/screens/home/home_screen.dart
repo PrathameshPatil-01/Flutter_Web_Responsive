@@ -45,13 +45,15 @@ class _HomeScreenState extends State<HomeScreen> {
         floatingActionButton: BlocBuilder<MyUserBloc, MyUserState>(
           builder: (context, state) {
             return FloatingActionButton.extended(
-              label: const Row(
-                children: [
-                  Icon(CupertinoIcons.add),
-                  SizedBox(width: 8),
-                  Text("Create Post")
-                ],
-              ),
+              label: isLargeScreen
+                  ? const Row(
+                      children: [
+                        Icon(CupertinoIcons.add),
+                        SizedBox(width: 8),
+                        Text("Create Post")
+                      ],
+                    )
+                  : const Icon(CupertinoIcons.add),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -409,7 +411,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildBody() {
     switch (_selectedIndex) {
       case 0:
-        return FeedPage();
+        return const FeedPage();
       case 1:
         return Container();
       case 2:

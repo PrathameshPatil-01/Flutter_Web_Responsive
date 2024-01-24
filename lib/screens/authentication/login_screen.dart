@@ -34,6 +34,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final bool isLargeScreen = width > 800;
+
     return BlocListener<LoginBloc, LoginState>(listener: (context, state) {
       if (state is LoginSuccess) {
         setState(() {
@@ -96,48 +99,44 @@ class _LoginScreenState extends State<LoginScreen> {
                           key: _formKey,
                           child: Column(
                             children: [
-                              const Row(
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'LOGIN',
                                     textAlign: TextAlign.start,
                                     style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                     ),
                                   ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  const Flexible(
-                                    child: Text(
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w300,
-                                        ),
-                                        "Don't have an account  ?"),
-                                  ),
-                                  Flexible(
-                                    child: TextButton(
-                                      onPressed: () {
-                                        Navigator.pushNamed(
-                                            context, '/SignUpScreen');
-                                      },
-                                      child: const Text(
-                                        'Sign Up',
-                                        textAlign: TextAlign.start,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.blue,
+                                  const Spacer(),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      const Text(
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                          "Don't have an account  ?"),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pushNamed(
+                                              context, '/SignUpScreen');
+                                        },
+                                        child: const Text(
+                                          'Sign Up',
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.blue,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ),
+                                    ],
+                                  )
                                 ],
                               ),
                               const SizedBox(height: 20),
@@ -262,7 +261,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           Text(
                                             containsUpperCase
                                                 ? "✅ Uppercase added"
-                                                : "⛔ At least 1 uppercase required ",
+                                                : "⛔  1 uppercase required ",
                                             style: TextStyle(
                                               fontSize: 11,
                                               fontWeight: FontWeight.w500,
@@ -275,7 +274,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           Text(
                                             containsLowerCase
                                                 ? "✅ Lowercase added"
-                                                : "⛔ At least 1 lowercase required ",
+                                                : "⛔  1 lowercase required ",
                                             style: TextStyle(
                                               fontSize: 11,
                                               fontWeight: FontWeight.w500,
@@ -288,7 +287,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           Text(
                                             containsNumber
                                                 ? "✅ Number added"
-                                                : "⛔ At least 1 number required ",
+                                                : "⛔  1 number required ",
                                             style: TextStyle(
                                               fontSize: 11,
                                               fontWeight: FontWeight.w500,
@@ -308,8 +307,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         children: [
                                           Text(
                                             contains8Length
-                                                ? "✅ Minimum 8 characters added"
-                                                : "⛔ At least 8 characters required ",
+                                                ? "✅  8 characters added"
+                                                : "⛔  8 characters required ",
                                             style: TextStyle(
                                               fontSize: 11,
                                               fontWeight: FontWeight.w500,
@@ -320,9 +319,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ),
                                           const SizedBox(height: 5),
                                           Text(
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
                                             containsSpecialChar
                                                 ? "✅ Special character added"
-                                                : "⛔ At least 1 special character required ",
+                                                : "⛔  1 special character required ",
                                             style: TextStyle(
                                               fontSize: 11,
                                               fontWeight: FontWeight.w500,
@@ -348,7 +349,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       },
                                       child: const Text(
                                           style: TextStyle(
-                                            fontSize: 14,
+                                            fontSize: 15,
                                             color: Colors.blue,
                                           ),
                                           'Forgot Password ?'),

@@ -8,7 +8,13 @@ sealed class CreatePostEvent extends Equatable {
 }
 
 class CreatePost extends CreatePostEvent {
-	final Post post;
+  final Post post;
 
-	const CreatePost(this.post);
+  const CreatePost(this.post);
+}
+
+class DeletePost extends CreatePostEvent {
+  final String postId;
+
+  const DeletePost(this.postId);
 }

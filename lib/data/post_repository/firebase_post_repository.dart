@@ -98,4 +98,30 @@ class FirebasePostRepository implements PostRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<void> deletePost(String postId) async {
+    try {
+      // Get the post document
+      var postDoc = await postCollection.doc(postId).get();
+
+      if (postDoc.exists) {
+        // Delete post image from Firebase Storage
+        var postEntity = PostEntity.fromDocument(postDoc.data()!);
+        if (postEntity.imageUrl != null && postEntity.imageUrl!.isNotEmpty) {
+          await FirebaseStorage.instance
+              .refFromURL(postEntity.imageUrl!)
+              .delete();
+        }
+
+        // Delete the post document from Firestore
+        await postCollection.doc(postId).delete();
+      } else {
+        throw Exception("Post not found");
+      }
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
 }

@@ -11,4 +11,6 @@ abstract class PostRepository {
   Future<Post> likePost(String postId, String userId);
 
   Future<int> getPostCountForUser(String userId);
+
+  Future<void> deletePost(String postId);
 }

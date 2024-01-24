@@ -58,38 +58,37 @@ class ForgotPasswordScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text(
+                            const Text(
                               'RESET PASSWORD',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               ),
                             ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Flexible(
-                              child: TextButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/LoginScreen');
-                                },
-                                child: const Text(
-                                  'Back to Login',
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.blueAccent,
+                            const Spacer(),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, '/LoginScreen');
+                                  },
+                                  child: const Text(
+                                    'Back to Login',
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.blueAccent,
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
                           ],
                         ),

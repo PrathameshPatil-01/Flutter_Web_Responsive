@@ -7,19 +7,27 @@ part 'create_post_event.dart';
 part 'create_post_state.dart';
 
 class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
-	final PostRepository _postRepository;
+  final PostRepository _postRepository;
 
-  CreatePostBloc({
-		required PostRepository postRepository
-	}) : _postRepository = postRepository,
-		super(CreatePostInitial()) {
+  CreatePostBloc({required PostRepository postRepository})
+      : _postRepository = postRepository,
+        super(CreatePostInitial()) {
     on<CreatePost>((event, emit) async {
-			emit(CreatePostLoading());
+      emit(CreatePostLoading());
       try {
-				Post post = await _postRepository.createPost(event.post);
+        Post post = await _postRepository.createPost(event.post);
         emit(CreatePostSuccess(post));
       } catch (e) {
         emit(CreatePostFailure());
+      }
+    });
+    on<DeletePost>((event, emit) async {
+      emit(DeletePostLoading());
+      try {
+        await _postRepository.deletePost(event.postId);
+        emit(DeletePostSuccess());
+      } catch (e) {
+        emit(DeletePostFailure());
       }
     });
   }
