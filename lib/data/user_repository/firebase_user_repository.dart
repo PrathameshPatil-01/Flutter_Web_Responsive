@@ -121,4 +121,15 @@ class FirebaseUserRepository implements UserRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<MyUser> getOnlyUser(String myUserId) async {
+    try {
+      return usersCollection.doc(myUserId).get().then((value) =>
+          MyUser.fromEntity(MyUserEntity.fromDocument(value.data()!)));
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
 }

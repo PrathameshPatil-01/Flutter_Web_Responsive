@@ -25,7 +25,7 @@ class FirebaseCommentRepository implements CommentRepository {
           {
             'commentId': comment.commentId,
             'commentText': comment.commentText,
-            'userId': comment.userId,
+            'myUser': comment.myUser.toEntity().toDocument(),
             'createdAt': comment.createdAt,
           },
         ]),

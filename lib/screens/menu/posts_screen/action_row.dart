@@ -7,6 +7,7 @@ import 'package:web_auth/blocs/likes/likes_bloc.dart';
 import 'package:web_auth/blocs/my_user_bloc/my_user_bloc.dart';
 import 'package:web_auth/data/comment_repository/models/comment.dart';
 import 'package:web_auth/data/post_repository/models/post.dart';
+import 'package:web_auth/data/user_repository/models/my_user.dart';
 
 class ActionsRow extends StatefulWidget {
   Post item;
@@ -126,14 +127,15 @@ class _CommentsSection extends StatefulWidget {
 class _CommentsSectionState extends State<_CommentsSection> {
   late Comment comment;
   final TextEditingController _commentController = TextEditingController();
+  MyUser? user;
 
   @override
   void initState() {
     super.initState();
     comment = Comment.empty;
     final userstate = context.read<MyUserBloc>().state;
-    final userId = userstate.user!.id;
-    comment.userId = userId;
+    user = userstate.user!;
+    comment.myUser = user!;
   }
 
   String formatTimeDifference(DateTime creationTime) {
@@ -179,10 +181,22 @@ class _CommentsSectionState extends State<_CommentsSection> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Circular Avatar
-                  CircleAvatar(
-                    radius: 16,
-                    backgroundImage: NetworkImage(widget.item.myUser.picture!),
+                  Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: comment['myUser']['picture'] != ''
+                            ? NetworkImage(comment['myUser']['picture']!)
+                            : const NetworkImage(
+                                "https://cdn3.iconfinder.com/data/icons/feather-5/24/user-512.png"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
+
                   const SizedBox(width: 8.0),
                   // Comment Box
                   Expanded(
@@ -204,7 +218,7 @@ class _CommentsSectionState extends State<_CommentsSection> {
                                 overflow: TextOverflow.ellipsis,
                                 text: TextSpan(children: [
                                   TextSpan(
-                                    text: "userName",
+                                    text: comment['myUser']['firstName'],
                                     style:
                                         Theme.of(context).textTheme.bodyMedium,
                                   ),
@@ -258,7 +272,7 @@ class _CommentsSectionState extends State<_CommentsSection> {
         // Circular Avatar
         CircleAvatar(
           radius: 16,
-          backgroundImage: NetworkImage(widget.item.myUser.picture!),
+          backgroundImage: NetworkImage(user!.picture!),
         ),
         const SizedBox(width: 8.0), // Adjust spacing as needed
 

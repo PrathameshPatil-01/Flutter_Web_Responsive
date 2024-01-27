@@ -37,9 +37,6 @@ class _FeedPageState extends State<FeedPage> {
 
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      context.read<GetPostBloc>().add(GetPosts());
-    });
     final width = MediaQuery.of(context).size.width;
     final bool isLargeScreen = width > 800;
 
@@ -89,7 +86,8 @@ class _FeedPageState extends State<FeedPage> {
                 actions: [
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pop(); // Close the dialog
+                      Navigator.of(context).pop();
+                      context.read<GetPostBloc>().add(GetPosts());
                     },
                     child: const Text('OK'),
                   ),

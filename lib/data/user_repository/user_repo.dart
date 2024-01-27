@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:web_auth/data/user_repository/models/my_user.dart';
 
-
 abstract class UserRepository {
   Stream<User?> get user;
 
@@ -19,4 +18,6 @@ abstract class UserRepository {
   Future<MyUser> getMyUser(String myUserId);
 
   Future<String> uploadPicture(html.File file, String userId);
+
+  Future<MyUser> getOnlyUser(String myUserId);
 }

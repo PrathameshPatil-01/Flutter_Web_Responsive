@@ -584,8 +584,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             child: Text(
                                               'SIGN IN WITH GOOGLE',
                                               style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
+                                                fontSize: 16,
                                               ),
                                             ),
                                           ),

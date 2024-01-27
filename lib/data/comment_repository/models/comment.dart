@@ -1,16 +1,17 @@
 import 'package:web_auth/data/comment_repository/entities/comment_entity.dart';
+import 'package:web_auth/data/user_repository/models/my_user.dart';
 
 class Comment {
   String commentId;
   DateTime createdAt;
-  String? userId;
+  MyUser myUser;
   String? commentText;
   List<String> likes;
 
   Comment({
     required this.commentId,
     required this.createdAt,
-    required this.userId,
+    required this.myUser,
     this.commentText,
     this.likes = const [],
   });
@@ -20,22 +21,22 @@ class Comment {
     commentId: '',
     commentText: '',
     createdAt: DateTime.now(),
-    userId: "",
+    myUser: MyUser.empty,
     likes: [],
   );
 
-  // Modify String parameters
+  // Modify MyUser parameters
   Comment copyWith({
     String? commentId,
     DateTime? createdAt,
-    String? userId,
+    MyUser? myUser,
     String? commentText,
     List<String>? likes,
   }) {
     return Comment(
       commentId: commentId ?? this.commentId,
       createdAt: createdAt ?? this.createdAt,
-      userId: userId ?? this.userId,
+      myUser: myUser ?? this.myUser,
       commentText: commentText ?? this.commentText,
       likes: likes ?? this.likes,
     );
@@ -52,7 +53,7 @@ class Comment {
       commentId: commentId,
       commentText: commentText,
       createdAt: createdAt,
-      userId: userId,
+      myUser: myUser,
       likes: likes,
     );
   }
@@ -62,13 +63,13 @@ class Comment {
       commentId: entity.commentId,
       commentText: entity.commentText,
       createdAt: entity.createdAt,
-      userId: entity.userId,
+      myUser: entity.myUser,
       likes: entity.likes,
     );
   }
 
   @override
   String toString() {
-    return 'Comment(commentId: $commentId, createdAt: $createdAt, userId: $userId, commentText: $commentText, likes: $likes)';
+    return 'Comment(commentId: $commentId, createdAt: $createdAt, myUser: $myUser, commentText: $commentText, likes: $likes)';
   }
 }
