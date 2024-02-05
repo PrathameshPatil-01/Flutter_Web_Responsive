@@ -34,9 +34,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final bool isLargeScreen = width > 800;
-
     return BlocListener<LoginBloc, LoginState>(listener: (context, state) {
       if (state is LoginSuccess) {
         setState(() {
@@ -123,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           "Don't have an account  ?"),
                                       TextButton(
                                         onPressed: () {
-                                          Navigator.pushNamed(
+                                          Navigator.pushReplacementNamed(
                                               context, '/SignUpScreen');
                                         },
                                         child: const Text(
@@ -260,39 +257,39 @@ class _LoginScreenState extends State<LoginScreen> {
                                         children: [
                                           Text(
                                             containsUpperCase
-                                                ? "✅ Uppercase added"
-                                                : "⛔  1 uppercase required ",
+                                                ? "✅   Uppercase  added"
+                                                : "⛔   1  uppercase  required ",
                                             style: TextStyle(
-                                              fontSize: 11,
-                                              fontWeight: FontWeight.w500,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
                                               color: containsUpperCase
-                                                  ? Colors.green
+                                                  ? Colors.green.shade700
                                                   : Colors.grey.shade700,
                                             ),
                                           ),
                                           const SizedBox(height: 5),
                                           Text(
                                             containsLowerCase
-                                                ? "✅ Lowercase added"
-                                                : "⛔  1 lowercase required ",
+                                                ? "✅   Lowercase  added"
+                                                : "⛔   1  lowercase  required ",
                                             style: TextStyle(
-                                              fontSize: 11,
-                                              fontWeight: FontWeight.w500,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
                                               color: containsLowerCase
-                                                  ? Colors.green
+                                                  ? Colors.green.shade700
                                                   : Colors.grey.shade700,
                                             ),
                                           ),
                                           const SizedBox(height: 5),
                                           Text(
                                             containsNumber
-                                                ? "✅ Number added"
-                                                : "⛔  1 number required ",
+                                                ? "✅   Number  added"
+                                                : "⛔   1  number  required ",
                                             style: TextStyle(
-                                              fontSize: 11,
-                                              fontWeight: FontWeight.w500,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
                                               color: containsNumber
-                                                  ? Colors.green
+                                                  ? Colors.green.shade700
                                                   : Colors.grey.shade700,
                                             ),
                                           ),
@@ -307,13 +304,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                         children: [
                                           Text(
                                             contains8Length
-                                                ? "✅  8 characters added"
-                                                : "⛔  8 characters required ",
+                                                ? "✅   8  characters  added"
+                                                : "⛔   8  characters  required ",
                                             style: TextStyle(
-                                              fontSize: 11,
-                                              fontWeight: FontWeight.w500,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
                                               color: contains8Length
-                                                  ? Colors.green
+                                                  ? Colors.green.shade700
                                                   : Colors.grey.shade700,
                                             ),
                                           ),
@@ -322,13 +319,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             containsSpecialChar
-                                                ? "✅ Special character added"
-                                                : "⛔  1 special character required ",
+                                                ? "✅   Special  character  added"
+                                                : "⛔   1  special  character  required ",
                                             style: TextStyle(
-                                              fontSize: 11,
-                                              fontWeight: FontWeight.w500,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
                                               color: containsSpecialChar
-                                                  ? Colors.green
+                                                  ? Colors.green.shade700
                                                   : Colors.grey.shade700,
                                             ),
                                           ),
