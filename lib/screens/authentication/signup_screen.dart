@@ -582,7 +582,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           const SizedBox(width: 10),
                                           const Flexible(
                                             child: Text(
-                                              'SIGN IN WITH GOOGLE',
+                                              'Continue with google',
                                               style: TextStyle(
                                                 fontSize: 16,
                                               ),
