@@ -1,16 +1,22 @@
-# web_auth
+# Flutter Portal Demo Web App
 
-A new Flutter project.
+This project is a demo portal web application built using Flutter Web, Firebase, and Bloc for state management. The app demonstrates modern portal features such as authentication, real-time data fetching, and dynamic content updates.
 
-## Getting Started
+## Table of Contents 
 
-This project is a starting point for a Flutter application.
+- [Demo](#demo)
+- [Features](#features)
 
-A few resources to get you started if this is your first Flutter project:
+## Demo
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+You can check out the live demo of the Flutter Portal Demo Web App here:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[**Live Demo**](https://flutter-web-1c692.web.app/)
+
+## Features
+
+- User authentication with Firebase.
+- Real-time data updates using Firebase Firestore.
+- Bloc pattern for state management.
+- Responsive design, optimized for web.
+- Easy navigation and interaction with dynamic content.
