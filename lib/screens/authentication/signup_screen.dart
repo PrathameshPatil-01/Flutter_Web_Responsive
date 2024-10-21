@@ -498,7 +498,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       padding:
                                           EdgeInsets.symmetric(vertical: 10),
                                       child: Text(
-                                        'SIGN UP',
+                                        'Sign up',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 16,
@@ -530,7 +530,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 8.0),
                                     child: Text(
-                                      'OR',
+                                      'Or',
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,

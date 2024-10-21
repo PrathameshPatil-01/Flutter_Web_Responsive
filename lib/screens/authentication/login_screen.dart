@@ -32,6 +32,22 @@ class _LoginScreenState extends State<LoginScreen> {
   bool containsSpecialChar = false;
   bool contains8Length = false;
 
+
+  @override
+  void initState() {
+    super.initState();
+    // Pre-fill the email and password
+    _emailController.text = "user@example.com"; // Pre-filled email
+    _passwordController.text = "Password@123";    // Pre-filled password
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(listener: (context, state) {
@@ -390,7 +406,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   milliseconds: 200),
                                               child: !loginRequired
                                                   ? const Text(
-                                                      'LOGIN',
+                                                      'Login',
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -440,7 +456,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 8.0),
                                       child: Text(
-                                        'OR',
+                                        'Or',
                                         style: TextStyle(
                                           color: Theme.of(context)
                                               .colorScheme
